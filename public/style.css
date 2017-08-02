@@ -1,7 +1,6 @@
 /* Dropdown Button */
 .dropbtn {
-    padding: 16px;
-    font-size: 16px;
+    width: 40vw;
     border: none;
     cursor: pointer;
 }
@@ -11,18 +10,22 @@
     background-color: #3e8e41;
 }
 
-/* The container <div> - needed to position the dropdown content */
+/* positions the dropdown content */
 .dropdown {
-    position: relative;
-    display: inline-block;
+    /*position: relative;
+    display: inline-block;*/
+    width: 40vw;
+    margin: auto;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Hides dropdown-content by default */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    z-index: 1;
+    padding: 0;
+    margin: auto;
+    /*z-index: 1;*/
 }
 
 /* Links inside the dropdown */
@@ -32,9 +35,27 @@
     display: block;
 }
 
+.dropdown-content button{
+  width: 40vw;
+}
+
 .dropdown-content button:hover, button:focus {
     background-color: green;
 }
 
 /* JS to adds this class to the .dropdown-content when clicked*/
 .show {display:block;}
+
+/*makes drop down scrowlable */
+.dropdown-content {
+   max-height:150px;/* you can change as you need it */
+   overflow:auto;/* to get scroll */
+}
+
+/*font align for title and p*/
+.main-area > h1, p {
+  text-align: center;
+}
+.results-table > h2 {
+  text-align: center;
+}
