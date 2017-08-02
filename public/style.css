@@ -1,6 +1,6 @@
 /* Dropdown Button */
 .dropbtn {
-    width: 40vw;
+    width: 65vw;
     border: none;
     cursor: pointer;
 }
@@ -14,7 +14,7 @@
 .dropdown {
     /*position: relative;
     display: inline-block;*/
-    width: 40vw;
+    width: 65vw;
     margin: auto;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .dropdown-content button{
-  width: 40vw;
+  width: 65vw;
 }
 
 .dropdown-content button:hover, button:focus {
