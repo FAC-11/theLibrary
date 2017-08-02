@@ -6,15 +6,15 @@ CREATE TABLE resources (
   id            SERIAL         PRIMARY KEY,
   title         VARCHAR(300)   NOT NULL,
   link          VARCHAR(300)   NOT NULL,
-  publish_month INTEGER(2),
-  publish_year  INTEGER(4),
+  publish_month INTEGER,
+  publish_year  INTEGER,
   upvotes       INTEGER
 );
 
 CREATE TABLE topics (
   id       SERIAL        PRIMARY KEY,
   topic    VARCHAR(200)  NOT NULL,
-  week     INTEGER(2)
+  week     INTEGER
 );
 
 CREATE TABLE resources_topics (
@@ -34,8 +34,7 @@ INSERT INTO resources(title, link, publish_month, publish_year, upvotes) VALUES
   ('The Node.js Way - Understanding Error-First Callbacks', 'http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/', '03', '2014', '4'),
   ('Learnyounode', 'https://github.com/workshopper/learnyounode', '06', '2017', '9')
 
-
-RETURNING ID;
+RETURNING id;
 
 INSERT INTO topics(topic, week) VALUES
   ('Javascript', '0'),
@@ -54,7 +53,7 @@ INSERT INTO topics(topic, week) VALUES
   ('HTML', '1'),
   ('UX', null)
 
-RETURNING ID;
+RETURNING id;
 
 INSERT INTO resources_topics(resource_id, topic_id) VALUES
   (1, 1),

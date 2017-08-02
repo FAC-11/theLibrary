@@ -4,7 +4,7 @@ const sql = fs.readFileSync(`${__dirname}/db_build.sql`).toString();
 
 dbConnection.query(sql, (err, res) => {
   if (err) {
-    throw err;
+    return console.log(err);
   }
   console.log("theLibrary tables created with result: ", res);
-})
+});
