@@ -7,7 +7,7 @@
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: #ABEBC6;
 }
 
 /* positions the dropdown content */
@@ -22,7 +22,6 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
     padding: 0;
     margin: auto;
     /*z-index: 1;*/
@@ -36,11 +35,13 @@
 }
 
 .dropdown-content button{
+  background-color: #f9f9f9;
+  border: none;
   width: 65vw;
 }
 
 .dropdown-content button:hover, button:focus {
-    background-color: green;
+    background-color: #ABEBC6;
 }
 
 /* JS to adds this class to the .dropdown-content when clicked*/
