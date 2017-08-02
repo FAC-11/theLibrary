@@ -53,8 +53,14 @@
 }
 
 /*font align for title and p*/
-.main-area > h1, p {
+.main-area > h1 {
   text-align: center;
+  margin-bottom: 0;
+}
+.main-area > p {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0;
 }
 .results-table > h2 {
   text-align: center;
