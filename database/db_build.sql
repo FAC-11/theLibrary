@@ -8,7 +8,7 @@ CREATE TABLE resources (
   link          VARCHAR(300)   NOT NULL,
   publish_month INTEGER,
   publish_year  INTEGER,
-  upvotes       INTEGER
+  upvotes       INTEGER        DEFAULT 0
 );
 
 CREATE TABLE topics (
@@ -32,7 +32,7 @@ INSERT INTO resources(title, link, publish_month, publish_year, upvotes) VALUES
   ('The Art of Node', 'https://github.com/maxogden/art-of-Node', '09', '2016', '3'),
   ('How to set up a Node.js app on Heroku in 6 steps', 'https://drublic.de/blog/how-to-set-up-herokuapp/', '01', '2017', '6'),
   ('The Node.js Way - Understanding Error-First Callbacks', 'http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/', '03', '2014', '4'),
-  ('Learnyounode', 'https://github.com/workshopper/learnyounode', '06', '2017', '9')
+  ('Learnyounode', 'https://github.com/workshopper/learnyounode', null, null, '9')
 
 RETURNING id;
 
