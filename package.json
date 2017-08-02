@@ -1,0 +1,46 @@
+{
+  "name": "faclibrary",
+  "version": "1.0.0",
+  "description": "The centralised resource of useful weblinks for FAC!",
+  "main": "index.html",
+  "scripts": {
+    "test": "tape tests/*.test.js | tap-spec",
+    "start": "node ./src/server.js",
+    "devstart": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FAC-11/theLibrary.git"
+  },
+  "keywords": [
+    "library",
+    "fac",
+    "weblinks",
+    "week6",
+    "postgresql",
+    "databases",
+    "node",
+    "asskitty"
+  ],
+  "author": "An asskitty-donions production",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FAC-11/theLibrary/issues"
+  },
+  "homepage": "https://github.com/FAC-11/theLibrary#readme",
+  "dependencies": {
+    "env2": "^2.2.0",
+    "pg": "^7.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
+    "istanbul": "^0.4.5",
+    "nodemon": "^1.11.0",
+    "shot": "^3.4.2",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0",
+    "travis": "^0.1.1"
+  }
+}
