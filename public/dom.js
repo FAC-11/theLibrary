@@ -11,20 +11,25 @@ dropDown.addEventListener("click", function() {
 
 // Render the DOM - our callback from request.js
 var DOMRender = function(sectionId, err, res) {
+  var oldResultsTable = document.getElementById('results-table');
+  var newResultsTable = document.createElement('section');
+  var resultsHeading = document.createElement('h2');
+  newResultsTable.className = "results";
+  newResultsTable.setAttribute('id', "results-table");
+  resultsHeading.className = "results";
+
   if (err) {
     console.log(err);
-  } else if (res.notValid) {
+  } else if (res[0].notValid) {
+    var notValidContent = document.createElement('p');
+    notValidContent.className = "error-message";
     resultsHeading.textContent = "Sorry!"
+    notValidContent.textContent = "We don't have any good articles on this topic right now. If you know of any, drop @ameliejyc, @astroash, or @maxgerber a line on Gitter";
+    newResultsTable.appendChild(resultsHeading);
+    newResultsTable.appendChild(notValidContent);
   } else {
-    var oldResultsTable = document.getElementById('results-table');
-    var newResultsTable = document.createElement('section');
-    var resultsHeading = document.createElement('h2');
-    newResultsTable.className = "results";
-    newResultsTable.setAttribute('id', "results-table");
-    resultsHeading.className = "results";
     resultsHeading.textContent = sectionId;
     newResultsTable.appendChild(resultsHeading);
-
     res.forEach(function(entry) {
       // 1: define Elements
       var resultsEntry = document.createElement('button');
@@ -60,8 +65,8 @@ var DOMRender = function(sectionId, err, res) {
       resultsEntry.appendChild(upVotes);
       newResultsTable.appendChild(resultsEntry);
     });
-    main.replaceChild(newResultsTable, oldResultsTable);
   };
+  main.replaceChild(newResultsTable, oldResultsTable);
 };
 
 // Close the dropdown menu if the user clicks outside of it
