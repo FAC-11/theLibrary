@@ -1,0 +1,68 @@
+/* Dropdown Button */
+.dropdowns__btn {
+    width: 65vw;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropdowns__btn:hover, .dropdowns__btn:focus {
+    background-color: #ABEBC6;
+}
+
+/* positions the dropdown__content */
+.dropdown {
+    /*position: relative;
+    display: inline-block;*/
+    width: 65vw;
+    margin: auto;
+}
+
+/* Hides dropdown__content by default */
+.dropdown__content {
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: auto;
+    /*z-index: 1;*/
+}
+
+/* Links inside the dropdown */
+.dropdown__content li{
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown__content button{
+  background-color: #f9f9f9;
+  border: none;
+  width: 65vw;
+}
+
+.dropdown__content button:hover, button:focus {
+    background-color: #ABEBC6;
+}
+
+/* JS to adds this class to the .dropdown__content when clicked*/
+.show {display:block;}
+
+/*makes drop down scrowlable */
+.dropdown__content {
+   max-height:150px;/* you can change as you need it */
+   overflow:auto;/* to get scroll */
+}
+
+/*font align for title and p*/
+.main-area > h1 {
+  text-align: center;
+  margin-bottom: 0;
+}
+.main-area > p {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0;
+}
+.results > h2 {
+  text-align: center;
+}
