@@ -11,7 +11,8 @@ function serverRequest(id, topic, cb) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       cb(id, null, JSON.parse(xhr.responseText));
-    } else {
+    }
+    if (xhr.status === 404) {
       cb(id, xhr.status, JSON.parse(xhr.responseText));
     }
   };
