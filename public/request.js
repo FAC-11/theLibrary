@@ -1,4 +1,4 @@
-function serverRequest(url, cb) {
+function serverRequest(topic, cb) {
   var xhr = new XMLHTTPRequest();
   xhr.onreadystatechange = function () {
     var serverResponse = JSON.parse(xhr.responseText);
@@ -8,4 +8,6 @@ function serverRequest(url, cb) {
       cb(xhr.status, serverResponse);
     }
   };
+  xhr.open('GET', '/?topic=' + topic, true);
+  xhr.send();
 }

@@ -23,5 +23,5 @@ window.onclick = function(event) {
 
 // Event Listener : Topic
 dropDownList.addEventListener('click', function(event) {
-  console.log(event.target);
+  request(event.target.value, DOMRender);
 });
