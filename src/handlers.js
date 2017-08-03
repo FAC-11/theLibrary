@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const getTopic = require('./get_topic');
 const getTrending = require('./get_trending');
+const postUpvote = require('./post_upvote');
 
 const handleHomeRoute = (req, res) => {
   const filePath = path.join(__dirname, '..', 'public', 'index.html');
@@ -55,9 +56,20 @@ const handleTrending = (req, res) => {
   });
 };
 
+const handlePostUpvote = (req, res) => {
+  const titleName = url.split('?upvote=')[1];
+  postUpvote(titleName, (err, file) => {
+    if (err) return err;
+    //gets current status of database
+    res.writeHead(200, { 'content-type': 'application/json' });
+    res.end();
+  });
+};
+
 module.exports = {
   handleHomeRoute,
   handlePublic,
   handleTopic,
   handleTrending,
+  handlePostUpvote,
 };

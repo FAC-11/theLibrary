@@ -84,10 +84,10 @@ window.onclick = function(event) {
 
 // Event Listener : Topic
 dropDownList.addEventListener('click', function(event) {
-  serverRequest('Topic', event.target.value, DOMRender);
+  serverRequest('Topic', event.target.value, 'GET', DOMRender);
 });
 
 // Event Listener : Trending
 document.addEventListener('DOMContentLoaded', function(event) {
-  serverRequest('Trending', null, DOMRender);
+  serverRequest('Trending', null,'GET', DOMRender);
 })

@@ -1,4 +1,4 @@
-function serverRequest(id, topic, cb) {
+function serverRequest(id, topic, requestType, cb) {
   var xhr = new XMLHttpRequest();
   var endpoint = '';
 
@@ -17,6 +17,6 @@ function serverRequest(id, topic, cb) {
       cb(id, xhr.status, JSON.parse(xhr.responseText));
     }
   };
-  xhr.open('GET', endpoint, true);
+  xhr.open(requestType, endpoint, true);
   xhr.send();
 }
