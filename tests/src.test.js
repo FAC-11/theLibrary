@@ -24,7 +24,10 @@ test('checking route and handlers', (t) => {
 });
 
 test('topic query url', (t) => {
-  shot.inject(router, { method: 'get', url: '?topic=CSS'}, (res) => {
-    t.equal
-  })
-})
+  shot.inject(router, { method: 'get', url: '?topic=CSS' }, (res) => {
+    const actual = JSON.parse(res.payload)[0].topic;
+    const expected = 'CSS';
+    t.equal(actual, expected, 'response from a topic query url should include topic key in payload');
+    t.end();
+  });
+});
