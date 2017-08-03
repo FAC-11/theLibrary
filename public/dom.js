@@ -3,8 +3,9 @@
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 var dropDown = document.getElementById('drop-down-btn');
+var dropDownList = document.getElementById('dropdown-list');
 dropDown.addEventListener("click", function(){
-    document.getElementById("myDropdown").classList.toggle("show");
+    dropDownList.classList.toggle("show");
 });
 
 // Close the dropdown menu if the user clicks outside of it
@@ -19,3 +20,8 @@ window.onclick = function(event) {
     }
   }
 }
+
+// Event Listener : Topic
+dropDownList.addEventListener('click', function(event) {
+  console.log(event.target);
+});
