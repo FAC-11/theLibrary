@@ -9,51 +9,61 @@ dropDown.addEventListener("click", function() {
   document.getElementById("myDropdown").classList.toggle("show");
 });
 
+var createTopicsSection = function(res) {
+  res.forEach(function(entry) {
+    // 1: define Elements
+    var resultsEntry = document.createElement('button');
+    var titleDiv = document.createElement('div');
+    var titleHeading = document.createElement('h3');
+    var titleText = document.createElement('span');
+    var dateDiv = document.createElement('div');
+    var dateHeading = document.createElement('h3');
+    var dateText = document.createElement('span');
+    var upVotes = document.createElement('span');
+    // 2: add CSS classes
+    resultsEntry.className = "results__entry";
+    titleDiv.className = "entry__title";
+    titleHeading.className = "entry__heading";
+    titleText.className = "entry__text";
+    dateDiv.className = "entry__title";
+    dateHeading.className = "entry__heading";
+    dateText.className = "entry__text";
+    upVotes.className = "entry__upvotes";
+    // 3: add data from database response
+    titleHeading.textContent = 'Title: ';
+    titleText.textContent = entry.title;
+    dateHeading.textContent = 'Date: ';
+    dateText.textContent = entry.publish_year;
+    upVotes.textContent = entry.upvotes + "people recommend this";
+    // 4: nest Elements within eachother
+    titleDiv.appendChild(titleHeading);
+    titleDiv.appendChild(titleText);
+    dateDiv.appendChild(dateHeading);
+    dateDiv.appendChild(dateText);
+    resultsEntry.appendChild(titleDiv);
+    resultsEntry.appendChild(dateDiv);
+    // 5: Insert Elements to the DOM
+    resultsTable.appendChild(titleDiv);
+    resultsTable.appendChild(dateDiv);
+    resultsTable.appendChild(upVotes);
+  });
+}
+
+var createTrendingSection = function(res) {
+  // create Trending DOM function here
+}
+
 // Render the DOM - our callback from request.js
-var DOMRender = function(err, res) {
+var DOMRender = function(err, res, id) {
   if (err) {
     console.log(err);
   } else {
-    var resultsHeadingText = document.createTextNode('Topics');
-    resultsHeading.textContent = resultsHeadingText;
-
-    res.forEach(function(entry) {
-      // 1: define Elements
-      var resultsEntry = document.createElement('button');
-      var titleDiv = document.createElement('div');
-      var titleHeading = document.createElement('h3');
-      var titleText = document.createElement('span');
-      var dateDiv = document.createElement('div');
-      var dateHeading = document.createElement('h3');
-      var dateText = document.createElement('span');
-      var upVotes = document.createElement('span');
-      // 2: add CSS classes
-      resultsEntry.className = "results__entry";
-      titleDiv.className = "entry__title";
-      titleHeading.className = "entry__heading";
-      titleText.className = "entry__text";
-      dateDiv.className = "entry__title";
-      dateHeading.className = "entry__heading";
-      dateText.className = "entry__text";
-      upVotes.className = "entry__upvotes";
-      // 3: add data from database response
-      titleHeading.textContent = 'Title: ';
-      titleText.textContent = entry.title;
-      dateHeading.textContent = 'Date: ';
-      dateText.textContent = entry.publish_year;
-      upVotes.textContent = entry.upvotes + "people recommend this";
-      // 4: nest Elements within eachother
-      titleDiv.appendChild(titleHeading);
-      titleDiv.appendChild(titleText);
-      dateDiv.appendChild(dateHeading);
-      dateDiv.appendChild(dateText);
-      resultsEntry.appendChild(titleDiv);
-      resultsEntry.appendChild(dateDiv);
-      // 5: Insert Elements to the DOM
-      resultsTable.appendChild(titleDiv);
-      resultsTable.appendChild(dateDiv);
-      resultsTable.appendChild(upVotes);
-    });
+    resultsHeading.textContent = id;
+    if (id === 'Topics') {
+      createTopicsSection(res);
+    } else {
+      createTrendingSection(res);
+    }
   };
 };
 
