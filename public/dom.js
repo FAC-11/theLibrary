@@ -3,9 +3,8 @@
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 var dropDown = document.getElementById('drop-down-btn');
-var resultsTable = document.getElementById('results-table');
-var resultsHeading = document.getElementById('results-heading');
 var dropDownList = document.getElementById('dropdown-list');
+var main = document.getElementById('main-content');
 dropDown.addEventListener("click", function() {
   dropDownList.classList.toggle("show");
 });
@@ -14,8 +13,18 @@ dropDown.addEventListener("click", function() {
 var DOMRender = function(sectionId, err, res) {
   if (err) {
     console.log(err);
+  } else if (res.notValid) {
+    resultsHeading.textContent = "Sorry!"
   } else {
-    resultsHeading.textContent = id;
+    var oldResultsTable = document.getElementById('results-table');
+    var newResultsTable = document.createElement('section');
+    var resultsHeading = document.createElement('h2');
+    newResultsTable.className = "results";
+    newResultsTable.setAttribute('id', "results-table");
+    resultsHeading.className = "results";
+    resultsHeading.textContent = sectionId;
+    newResultsTable.appendChild(resultsHeading);
+
     res.forEach(function(entry) {
       // 1: define Elements
       var resultsEntry = document.createElement('button');
@@ -26,7 +35,7 @@ var DOMRender = function(sectionId, err, res) {
       var dateHeading = document.createElement('h3');
       var dateText = document.createElement('span');
       var upVotes = document.createElement('span');
-      // 2: add CSS classes
+      // 2: add CSS classes and IDs
       resultsEntry.className = "results__entry";
       titleDiv.className = "entry__title";
       titleHeading.className = "entry__heading";
@@ -40,7 +49,7 @@ var DOMRender = function(sectionId, err, res) {
       titleText.textContent = entry.title;
       dateHeading.textContent = 'Date: ';
       dateText.textContent = entry.publish_year;
-      upVotes.textContent = entry.upvotes + "people recommend this";
+      upVotes.textContent = entry.upvotes + " people recommend this";
       // 4: nest Elements within eachother
       titleDiv.appendChild(titleHeading);
       titleDiv.appendChild(titleText);
@@ -48,11 +57,10 @@ var DOMRender = function(sectionId, err, res) {
       dateDiv.appendChild(dateText);
       resultsEntry.appendChild(titleDiv);
       resultsEntry.appendChild(dateDiv);
-      // 5: Insert Elements to the DOM
-      resultsTable.appendChild(titleDiv);
-      resultsTable.appendChild(dateDiv);
-      resultsTable.appendChild(upVotes);
+      resultsEntry.appendChild(upVotes);
+      newResultsTable.appendChild(resultsEntry);
     });
+    main.replaceChild(newResultsTable, oldResultsTable);
   };
 };
 
