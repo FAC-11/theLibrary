@@ -54,7 +54,7 @@ var createTrendingSection = function(res) {
 }
 
 // Render the DOM - our callback from request.js
-var DOMRender = function(err, res, id) {
+var DOMRender = function(sectionId, err, res) {
   if (err) {
     console.log(err);
   } else {
