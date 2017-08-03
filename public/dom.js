@@ -6,7 +6,7 @@ var dropDown = document.getElementById('drop-down-btn');
 var resultsTable = document.getElementById('results-table');
 var resultsHeading = document.getElementById('results-heading');
 dropDown.addEventListener("click", function() {
-  document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("dropdown-list").classList.toggle("show");
 });
 
 // Render the DOM - our callback from request.js
