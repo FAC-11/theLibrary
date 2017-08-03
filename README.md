@@ -23,7 +23,7 @@ A centralised postgresql resource for FAC
 
 ## Database Schema
 
-### resources
+### resources  :books:
 | Column | Type| Modifier |
 | -------- | -------- | -------- |
 | id     | serial     |   PRIMARY KEY   |
@@ -33,14 +33,14 @@ A centralised postgresql resource for FAC
 | publish_year     |  INTEGER |      |
 | upvotes     | INTEGER  |   DEFAULT 0  |
 
-### topics
+### topics  :computer:
 | Column | Type| Modifier |
 | -------- | -------- | -------- |
 | id     | serial     |   PRIMARY KEY   |
 | topic   |  VARCHAR(300) |   NOT NULL  |
 | week   |  INTEGER |     |
 
-### resources_topics
+### resources_topics  :bookmark_tabs: 
 | Column | Type| Modifier |
 | -------- | -------- | -------- |
 | resource_id    | INTEGER REFERENCES resources(id)    |   ON UPDATE CASCADE   |
