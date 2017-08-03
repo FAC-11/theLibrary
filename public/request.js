@@ -4,8 +4,10 @@ function serverRequest(id, topic, requestType, cb) {
 
   if (id === 'Topic') {
     endpoint = '/?topic=' + topic;
-  } else {
+  } else if (id === 'Trending'){
     endpoint = '/?trending';
+  } else {
+    endpoint = id;
   }
 
   xhr.onreadystatechange = function () {

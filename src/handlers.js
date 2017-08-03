@@ -56,13 +56,28 @@ const handleTrending = (req, res) => {
   });
 };
 
-const handlePostUpvote = (req, res) => {
-  const titleName = url.split('?upvote=')[1];
+const handlePostUpvote = (req, res, url) => {
+      // dream query ?upvote=wtfeventloop+current=javascript
+  const titleName = url.split('?upvote=')[1].split('+current=')[0].replace(/%20/gi, ' ');
+  const currentPage = url.split('+current=')[1].replace(/%20/gi,' ');
   postUpvote(titleName, (err, file) => {
     if (err) return err;
     //gets current status of database
-    res.writeHead(200, { 'content-type': 'application/json' });
-    res.end();
+    if (currentPage === 'Trending'){
+      getTrending((err, file) => {
+        if (err) return err;
+        const trendingResponse = JSON.stringify(file);
+        res.writeHead(200, { 'content-type': 'application/json' });
+        res.end(trendingResponse);
+      });
+    } else {
+      getTopic(currentPage, (err, file) => {
+        if (err) return err;
+        const topicResponse = JSON.stringify(file);
+        res.writeHead(200, { 'content-type': 'application/json' });
+        res.end(topicResponse);
+      })
+    }
   });
 };
 

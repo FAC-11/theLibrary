@@ -90,4 +90,13 @@ dropDownList.addEventListener('click', function(event) {
 // Event Listener : Trending
 document.addEventListener('DOMContentLoaded', function(event) {
   serverRequest('Trending', null,'GET', DOMRender);
+});
+
+// Event Listener : Upvote
+upvoteButton.addEventListener('click', function(event) {
+  // dream query ?upvote=wtfeventloop+current=javascript
+  var currentPage = document.getElementById('drop-down-btn').textContent;
+  var currentTitle =
+  var idCreation = '?upvote+' + currentPage;
+  serverRequest(idCreation, null,'post', DOMRender);
 })
