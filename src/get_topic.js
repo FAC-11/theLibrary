@@ -7,13 +7,13 @@ const getTopic = (queryString, cb) => {
     if (!res.rows[0]) {
       const anonymous = {
         topic: queryString,
-        notValid: true
+        notValid: true,
       };
       cb(null, [anonymous]);
-    }
+    };
     else {
-    cb(null, res.rows);
-  };
+      cb(null, res.rows);
+    }
   });
 };
 

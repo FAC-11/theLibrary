@@ -1,6 +1,6 @@
-
 const fs = require('fs');
 const path = require('path');
+const getTopic = require('./get_topic');
 
 const handleHomeRoute = (req, res) => {
   const filePath = path.join(__dirname, '..', 'public', 'index.html');
@@ -35,8 +35,14 @@ const handlePublic = (req, res, url) => {
   });
 };
 
-const handleTopic = (req, res) => {
-  //getTopic function will be called here, and send the res.writeHead/ res.end in the anon callback
+const handleTopic = (req, res, url) => {
+  const topicQuery = url.split('?topic=')[1];
+  getTopic(topicQuery, (err, file) => {
+    if (err) return err;
+    const topicResponse = JSON.stringify(file);
+    res.writeHead(200, {'content-type': 'application/json'});
+    res.end(topicResponse);
+  })
 };
 
 const handleTrending = (req, res) => {

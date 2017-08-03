@@ -22,3 +22,9 @@ test('checking route and handlers', (t) => {
     t.end();
   });
 });
+
+test('topic query url', (t) => {
+  shot.inject(router, { method: 'get', url: '?topic=CSS'}, (res) => {
+    t.equal
+  })
+})
