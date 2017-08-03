@@ -10,10 +10,10 @@ A centralised postgresql resource for FAC
 - [x] Database hosted on Heroku, or locally
 - [x] Build script for your database
 - [ ] Security concerns appropriately considered (you must protect against script injections!)
-- [ ] Good test coverage both server- and client-side
-- [ ] Content dynamic, but DOM manipulation kept to a minimum
+- [x] Good test coverage both server- and client-side
+- [x] Content dynamic, but DOM manipulation kept to a minimum
 - [x] Mobile-first design
-- [ ] Clear user journey (even if you take one of our suggested ideas, document the user journey in your readme)
+- [x] Clear user journey (even if you take one of our suggested ideas, document the user journey in your readme)
 
 ## User story
 > I can pick a topic and find a bunch of rad online resources with an article title, print data and link :link: 
