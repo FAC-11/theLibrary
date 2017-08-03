@@ -1,5 +1,13 @@
-function serverRequest(topic, cb) {
+function serverRequest(id, topic, cb) {
   var xhr = new XMLHttpRequest();
+  var endpoint = '';
+
+  if (id === 'topic') {
+    endpoint = '/?topic=' + topic;
+  } else {
+    endpoint = '/?trending';
+  }
+
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       cb(null, JSON.parse(xhr.responseText));
@@ -7,6 +15,6 @@ function serverRequest(topic, cb) {
       cb(xhr.status, JSON.parse(xhr.responseText));
     }
   };
-  xhr.open('GET', '/?topic=' + topic, true);
+  xhr.open('GET', endpoint, true);
   xhr.send();
 }
