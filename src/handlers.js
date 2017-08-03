@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const getTopic = require('./get_topic');
+const getTrending = require('./get_trending');
 
 const handleHomeRoute = (req, res) => {
   const filePath = path.join(__dirname, '..', 'public', 'index.html');
@@ -40,13 +41,18 @@ const handleTopic = (req, res, url) => {
   getTopic(topicQuery, (err, file) => {
     if (err) return err;
     const topicResponse = JSON.stringify(file);
-    res.writeHead(200, {'content-type': 'application/json'});
+    res.writeHead(200, { 'content-type': 'application/json' });
     res.end(topicResponse);
   })
 };
 
 const handleTrending = (req, res) => {
-//getTopic function will be called here, and send the res.writeHead/ res.end in the anon callback
+  getTrending((err, file) => {
+    if (err) return err;
+    const trendingResponse = JSON.stringify(file);
+    res.writeHead(200, { 'content-type': 'application/json' });
+    res.end(trendingResponse);
+  });
 };
 
 module.exports = {

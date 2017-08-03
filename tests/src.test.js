@@ -31,3 +31,12 @@ test('topic query url', (t) => {
     t.end();
   });
 });
+
+test('trending url', (t) => {
+  shot.inject( router, { method: 'get', url: '?trending' }, (res) => {
+    const actual = JSON.parse(res.payload).length;
+    const expected = 3;
+    t.equal(actual, expected, 'response from trending url should be an array of 3 objects');
+    t.end();
+  });
+});
