@@ -62,7 +62,7 @@ const handlePostUpvote = (req, res, url) => {
   const currentPage = url.split('+current=')[1].replace(/%20/gi,' ');
   postUpvote(titleName, (err, file) => {
     if (err) return err;
-    //gets current status of database
+    //if no error call getTrending or getTopic to return the updated info for the DOM
     if (currentPage === 'Trending'){
       getTrending((err, file) => {
         if (err) return err;
