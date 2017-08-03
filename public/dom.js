@@ -4,6 +4,7 @@
 toggle between hiding and showing the dropdown content */
 var dropDown = document.getElementById('drop-down-btn');
 var dropDownList = document.getElementById('dropdown-list');
+var resultsTable = document.getElementById('results-table');
 dropDown.addEventListener("click", function(){
     dropDownList.classList.toggle("show");
 });
@@ -21,7 +22,7 @@ window.onclick = function(event) {
   }
 }
 
-// Event Listener : Topic
+// Event Listener := Topic
 dropDownList.addEventListener('click', function(event) {
-  request(event.target.value, DOMRender);
+  serverRequest(event.target.value, DOMRender);
 });

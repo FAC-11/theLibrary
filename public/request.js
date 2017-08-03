@@ -1,11 +1,10 @@
 function serverRequest(topic, cb) {
-  var xhr = new XMLHTTPRequest();
+  var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-    var serverResponse = JSON.parse(xhr.responseText);
     if (xhr.readyState === 4 && xhr.status === 200) {
-      cb(null, serverResponse);
+      cb(null, JSON.parse(xhr.responseText));
     } else {
-      cb(xhr.status, serverResponse);
+      cb(xhr.status, JSON.parse(xhr.responseText));
     }
   };
   xhr.open('GET', '/?topic=' + topic, true);
