@@ -66,3 +66,19 @@
 .results > h2 {
   text-align: center;
 }
+
+.results__entry {
+  width: 90vw;
+  border: none;
+  margin-bottom: 1vh;
+  background: #ABEBC6;
+  padding: 0.5rem;
+}
+
+.results {
+  text-align: center;
+}
+
+.entry__heading {
+  display: inline;
+}
