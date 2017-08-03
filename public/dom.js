@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 upvoteButton.addEventListener('click', function(event) {
   // dream query ?upvote=wtfeventloop+current=javascript
   var currentPage = document.getElementById('drop-down-btn').textContent;
-  var currentTitle =
-  var idCreation = '?upvote+' + currentPage;
+  var currentTitle ;
+  var idCreation = '?upvote=' + currentTitle + '+current=' + currentPage;
   serverRequest(idCreation, null,'post', DOMRender);
 })
