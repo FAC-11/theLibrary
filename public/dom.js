@@ -32,6 +32,7 @@ var DOMRender = function(sectionId, err, res) {
     newResultsTable.appendChild(resultsHeading);
     res.forEach(function(entry) {
       // 1: define Elements
+      var link = document.createElement('a');
       var resultsEntry = document.createElement('button');
       var titleDiv = document.createElement('div');
       var titleHeading = document.createElement('h3');
@@ -50,6 +51,8 @@ var DOMRender = function(sectionId, err, res) {
       dateText.className = "entry__text";
       upVotes.className = "entry__upvotes";
       // 3: add data from database response
+      link.setAttribute('href', entry.link);
+      link.setAttribute('target', "_blank");
       titleHeading.textContent = 'Title: ';
       titleText.textContent = entry.title;
       dateHeading.textContent = 'Date: ';
@@ -63,7 +66,8 @@ var DOMRender = function(sectionId, err, res) {
       resultsEntry.appendChild(titleDiv);
       resultsEntry.appendChild(dateDiv);
       resultsEntry.appendChild(upVotes);
-      newResultsTable.appendChild(resultsEntry);
+      link.appendChild(resultsEntry);
+      newResultsTable.appendChild(link);
     });
   };
   main.replaceChild(newResultsTable, oldResultsTable);
