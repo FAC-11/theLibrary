@@ -5,8 +5,9 @@ toggle between hiding and showing the dropdown content */
 var dropDown = document.getElementById('drop-down-btn');
 var resultsTable = document.getElementById('results-table');
 var resultsHeading = document.getElementById('results-heading');
+var dropDownList = document.getElementById('dropdown-list');
 dropDown.addEventListener("click", function() {
-  document.getElementById("dropdown-list").classList.toggle("show");
+  dropDownList.classList.toggle("show");
 });
 
 // Render the DOM - our callback from request.js
@@ -67,3 +68,13 @@ window.onclick = function(event) {
     }
   }
 }
+
+// Event Listener : Topic
+dropDownList.addEventListener('click', function(event) {
+  serverRequest('Topic', event.target.value, DOMRender);
+});
+
+// Event Listener : Trending
+document.addEventListener('DOMContentLoaded', function(event) {
+  serverRequest('Trending', null, DOMRender);
+})
