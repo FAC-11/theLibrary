@@ -59,6 +59,7 @@ var DOMRender = function(sectionId, err, res) {
       entryLink.setAttribute('target', "_blank");
       upVoteImg.setAttribute('data', 'public/arrows.svg');
       upVoteImg.setAttribute('type', 'image/svg+xml');
+      upVoteLink.setAttribute('aria-label', 'Click here to upvote!');
       titleText.textContent = entry.title;
       dateText.textContent = entry.publish_year || '~';
       upVoteText.textContent = entry.upvotes;
