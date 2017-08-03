@@ -82,3 +82,9 @@
 .entry__heading {
   display: inline;
 }
+
+.error-message {
+  text-align: center;
+  margin: auto;
+  padding: 0 2rem;
+}
