@@ -4,6 +4,9 @@
 # Environment variables
 config.env
 
+# Dummy button
+dummy_button.html
+
 # Logs
 logs
 *.log
