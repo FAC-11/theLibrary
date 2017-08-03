@@ -72,7 +72,7 @@ var DOMRender = function(sectionId, err, res) {
       resultDiv.appendChild(entryLink);
       resultDiv.appendChild(upVoteLink);
       newResultsTable.appendChild(resultDiv);
-      dropDown.textContent = entry.topic;
+      dropDown.textContent = entry.topic || 'Select Your Topic';
     });
   };
   main.replaceChild(newResultsTable, oldResultsTable);
