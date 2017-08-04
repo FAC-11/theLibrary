@@ -57,6 +57,7 @@ var DOMRender = function(sectionId, err, res) {
       upVoteImg.setAttribute('data', 'public/arrows.svg');
       upVoteImg.setAttribute('type', 'image/svg+xml');
       resultsUpVote.setAttribute('id', 'upvote-link-'+entry.resource_id);
+      console.log(entry);
       titleText.textContent = entry.title;
       dateText.textContent = entry.publish_year || '~';
       upVoteText.textContent = entry.upvotes;
@@ -80,6 +81,7 @@ var DOMRender = function(sectionId, err, res) {
   upvoteButtonsArray.forEach(function (key) {
     upvoteButtons[key].addEventListener('click', function(event) {
       // dream query ?upvote=10+current=javascript
+      // console.log(event);
       var resourceId = event.path[1].id.split('upvote-link-')[1];
       var currentPage = document.getElementById('drop-down-btn').textContent;
       if (currentPage==='Select Your Topic'){currentPage='Trending'};
