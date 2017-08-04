@@ -1,7 +1,7 @@
 # theLibrary
 A centralised postgresql resource for FAC
 
-# theLibrary :zap: 
+# theLibrary :zap:
 
 ## Requirements
 
@@ -16,10 +16,18 @@ A centralised postgresql resource for FAC
 - [x] Clear user journey (even if you take one of our suggested ideas, document the user journey in your readme)
 
 ## User story
-> I can pick a topic and find a bunch of rad online resources with an article title, print data and link :link: 
+![](./readme_assets/user_story.jpg)
+> I can pick a topic and find a bunch of rad online resources with an article title, print data and link :link:
 
-> On load I can find out about the coolest articles peeps are raving about :cool: :cool: :cool: 
+> On load I can find out about the coolest articles peeps are raving about :cool: :cool: :cool:
 ## Planning: architecture and flow
+
+We planned out our flow as follows:
+![](./readme_assets/flow.jpg)
+
+And wanted it to look like this:
+![](./readme_assets/wire_frame.jpg)
+
 
 ## Database Schema
 
@@ -40,7 +48,7 @@ A centralised postgresql resource for FAC
 | topic   |  VARCHAR(300) |   NOT NULL  |
 | week   |  INTEGER |     |
 
-### resources_topics  :bookmark_tabs: 
+### resources_topics  :bookmark_tabs:
 | Column | Type| Modifier |
 | -------- | -------- | -------- |
 | resource_id    | INTEGER REFERENCES resources(id)    |   ON UPDATE CASCADE   |
@@ -50,9 +58,9 @@ A centralised postgresql resource for FAC
 ## What we decided on and how we decided to do it
 
 ## Cool learnings
-* Turns out sql **hates** capital letters! You can't name databases with caps :crying_cat_face: 
+* Turns out sql **hates** capital letters! You can't name databases with caps :crying_cat_face:
 * ALSO atom is a thief! :oncoming_police_car: And sometimes steals your letters from terminal
-* Writing tests within a foreach loop which take a callback :fearful: 
+* Writing tests within a foreach loop which take a callback :fearful:
  ```
  const topicArray = ['Javascript', 'CSS', 'Node', 'Databases', 'Accessibility', 'Git', 'TDD', 'HTTP', 'APIs', 'Callbacks', 'Software Architecture', 'Servers', 'Development Methodologies', 'HTML', 'UX'];
  topicArray.forEach((topic) => {
