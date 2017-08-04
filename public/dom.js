@@ -79,9 +79,9 @@ var DOMRender = function(sectionId, err, res) {
   var upvoteButtonsArray = Object.keys(document.getElementsByClassName('results__upvote-btn'));
   // Event Listener : Upvote
   upvoteButtonsArray.forEach(function (key) {
-    upvoteButtons[key].addEventListener('click', function(event) {
+    upvoteButtons[key].addEventListener('mouseup', function(event) {
       // dream query ?upvote=10+current=javascript
-      // console.log(event);
+      console.log(event);
       var resourceId = event.path[1].id.split('upvote-link-')[1];
       var currentPage = document.getElementById('drop-down-btn').textContent;
       if (currentPage==='Select Your Topic'){currentPage='Trending'};
