@@ -1,3 +1,4 @@
+
 .main-area {
   font-family: Karla, serif;
 }
@@ -13,7 +14,7 @@
 
 /* Dropdown button on hover & focus */
 .dropdowns__btn:hover, .dropdowns__btn:focus {
-    background-color: #ABEBC6;
+    background-color: #89e9f0;
 }
 
 /* positions the dropdown__content */
@@ -44,7 +45,7 @@
 }
 
 .dropdown__content button:hover, button:focus {
-    background-color: #ABEBC6;
+    background-color: #ffbff7;
 }
 
 /* JS to adds this class to the .dropdown__content when clicked*/
@@ -121,13 +122,13 @@
 }
 
 .main__heading {
-  font-size: 8vw;
-  margin: 4vh 0;
+  font-size: 13vw;
+  margin: 2vh 0;
   font-family: 'Italiana', serif;
 }
 
 .main__subheading {
-  font-size: 2.5vh;
+  font-size: 2.5vw;
   margin: 2vh auto;
   text-align: center;
 }

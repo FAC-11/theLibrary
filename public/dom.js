@@ -9,8 +9,6 @@ dropDown.addEventListener("click", function() {
   dropDownList.classList.toggle("show");
 });
 
-var convertTopicName = function(){};
-
 // Render the DOM - our callback from request.js
 var DOMRender = function(sectionId, err, res) {
   var oldResultsTable = document.getElementById('results-table');
