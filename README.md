@@ -1,7 +1,7 @@
-# theLibrary
+# theLibrary :zap:
 A centralised postgresql resource for FAC
 
-# theLibrary :zap:
+Coverage: 90% Statements 18/20, 62.5% Branches 5/8, 100% Functions 0/0, 100% Lines 18/18
 
 ## Requirements
 
