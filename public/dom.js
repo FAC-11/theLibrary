@@ -9,12 +9,14 @@ dropDown.addEventListener("click", function() {
   dropDownList.classList.toggle("show");
 });
 
+var convertTopicName = function(){};
+
 // Render the DOM - our callback from request.js
 var DOMRender = function(sectionId, err, res) {
   var oldResultsTable = document.getElementById('results-table');
   var newResultsTable = document.createElement('section');
   var resultsHeading = document.createElement('h2');
-  newResultsTable.className = "results";
+  newResultsTable.className = "results-table";
   newResultsTable.setAttribute('id', "results-table");
   resultsHeading.className = "results";
 
@@ -23,47 +25,55 @@ var DOMRender = function(sectionId, err, res) {
   } else if (res[0].notValid) {
     var notValidContent = document.createElement('p');
     notValidContent.className = "error-message";
-    resultsHeading.textContent = "Sorry!"
+    resultsHeading.textContent = "¯\\_(ツ)_/¯";
     notValidContent.textContent = "We don't have any good articles on this topic right now. If you know of any, drop @ameliejyc, @astroash, or @maxgerber a line on Gitter";
     newResultsTable.appendChild(resultsHeading);
     newResultsTable.appendChild(notValidContent);
+    dropDown.textContent = res[0].topic;
   } else {
     resultsHeading.textContent = sectionId;
     newResultsTable.appendChild(resultsHeading);
     res.forEach(function(entry) {
       // 1: define Elements
+      var resultDiv = document.createElement('div');
+      var entryLink = document.createElement('a');
+      var upVoteLink = document.createElement('a');
       var resultsEntry = document.createElement('button');
-      var titleDiv = document.createElement('div');
-      var titleHeading = document.createElement('h3');
+      var resultsUpVote = document.createElement('button');
       var titleText = document.createElement('span');
-      var dateDiv = document.createElement('div');
-      var dateHeading = document.createElement('h3');
       var dateText = document.createElement('span');
-      var upVotes = document.createElement('span');
+      var upVoteText = document.createElement('span');
+      var upVoteImg = document.createElement('object');
       // 2: add CSS classes and IDs
+      resultDiv.className = "results";
+      entryLink.className = "results__entry-link";
+      upVoteLink.className = "results__upvote-link";
       resultsEntry.className = "results__entry";
-      titleDiv.className = "entry__title";
-      titleHeading.className = "entry__heading";
-      titleText.className = "entry__text";
-      dateDiv.className = "entry__title";
-      dateHeading.className = "entry__heading";
-      dateText.className = "entry__text";
-      upVotes.className = "entry__upvotes";
+      resultsUpVote.className = "results__upvote-btn";
+      titleText.className = "entry__text--title";
+      dateText.className = "entry__text--date";
+      upVoteText.className = "upvote-btn__text";
+      upVoteImg.className = "upvote-btn__svg";
       // 3: add data from database response
-      titleHeading.textContent = 'Title: ';
+      entryLink.setAttribute('href', entry.link);
+      entryLink.setAttribute('target', "_blank");
+      upVoteImg.setAttribute('data', 'public/arrows.svg');
+      upVoteImg.setAttribute('type', 'image/svg+xml');
+      upVoteLink.setAttribute('aria-label', 'Click here to upvote!');
       titleText.textContent = entry.title;
-      dateHeading.textContent = 'Date: ';
-      dateText.textContent = entry.publish_year;
-      upVotes.textContent = entry.upvotes + " people recommend this";
+      dateText.textContent = entry.publish_year || '~';
+      upVoteText.textContent = entry.upvotes;
       // 4: nest Elements within eachother
-      titleDiv.appendChild(titleHeading);
-      titleDiv.appendChild(titleText);
-      dateDiv.appendChild(dateHeading);
-      dateDiv.appendChild(dateText);
-      resultsEntry.appendChild(titleDiv);
-      resultsEntry.appendChild(dateDiv);
-      resultsEntry.appendChild(upVotes);
-      newResultsTable.appendChild(resultsEntry);
+      resultsEntry.appendChild(titleText);
+      resultsEntry.appendChild(dateText);
+      resultsUpVote.appendChild(upVoteText);
+      resultsUpVote.appendChild(upVoteImg);
+      entryLink.appendChild(resultsEntry);
+      upVoteLink.appendChild(resultsUpVote);
+      resultDiv.appendChild(entryLink);
+      resultDiv.appendChild(upVoteLink);
+      newResultsTable.appendChild(resultDiv);
+      dropDown.textContent = entry.topic || 'Select Your Topic';
     });
   };
   main.replaceChild(newResultsTable, oldResultsTable);

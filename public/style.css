@@ -1,8 +1,14 @@
+.main-area {
+  font-family: Karla, serif;
+}
+
 /* Dropdown Button */
 .dropdowns__btn {
     width: 65vw;
     border: none;
     cursor: pointer;
+    font-size: 3vw;
+    padding: 1vw;
 }
 
 /* Dropdown button on hover & focus */
@@ -12,8 +18,6 @@
 
 /* positions the dropdown__content */
 .dropdown {
-    /*position: relative;
-    display: inline-block;*/
     width: 65vw;
     margin: auto;
 }
@@ -24,7 +28,6 @@
     position: absolute;
     padding: 0;
     margin: auto;
-    /*z-index: 1;*/
 }
 
 /* Links inside the dropdown */
@@ -45,7 +48,9 @@
 }
 
 /* JS to adds this class to the .dropdown__content when clicked*/
-.show {display:block;}
+.show {
+  display: block;
+}
 
 /*makes drop down scrowlable */
 .dropdown__content {
@@ -68,11 +73,33 @@
 }
 
 .results__entry {
-  width: 90vw;
+  width: 80vw;
   border: none;
   margin-bottom: 1vh;
   background: #ABEBC6;
   padding: 0.5rem;
+}
+
+.results__upvote-btn {
+  display: inline;
+  border: none;
+  background: inherit;
+  margin: 0;
+  height: 2em;
+}
+
+.upvote-btn__svg {
+  width: 2.5vw;
+  display: block;
+}
+
+.results__upvote-link {
+  margin: 0;
+  font-size: 2.5vw;
+}
+
+.results__entry:hover {
+  background: #ffbff7;
 }
 
 .results {
@@ -87,4 +114,30 @@
   text-align: center;
   margin: auto;
   padding: 0 2rem;
+}
+
+.results > a {
+  color: inherit;
+}
+
+.main__heading {
+  font-size: 8vw;
+  margin: 4vh 0;
+  font-family: 'Italiana', serif;
+}
+
+.main__subheading {
+  font-size: 2.5vh;
+  margin: 2vh auto;
+  text-align: center;
+}
+
+.results {
+  font-size: calc(5px + 2vw);
+}
+
+.entry__text--title {
+  font-size: 2.5vw;
+  font-weight: bold;
+  display: block;
 }

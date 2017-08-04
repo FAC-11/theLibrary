@@ -6,7 +6,8 @@
   "scripts": {
     "test": "tape tests/*.test.js | tap-spec",
     "start": "node ./src/server.js",
-    "devstart": "nodemon ./src/server.js"
+    "devstart": "nodemon ./src/server.js",
+    "coverage": "istanbul cover ./tests/src.test.js"
   },
   "repository": {
     "type": "git",
