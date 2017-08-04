@@ -9,15 +9,6 @@ dropDown.addEventListener("click", function() {
   dropDownList.classList.toggle("show");
 });
 
-// Convert Topic Name to be human-readable
-String.prototype.toProperCase = function() {
-  var split = decodeURIComponent(this).split(' ');
-  var newString = split.map(function(word) {
-    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-  });
-  return newString.join(' ');
-};
-
 // Render the DOM - our callback from request.js
 var DOMRender = function(sectionId, err, res) {
   var oldResultsTable = document.getElementById('results-table');
@@ -36,7 +27,7 @@ var DOMRender = function(sectionId, err, res) {
     notValidContent.textContent = "We don't have any good articles on this topic right now. If you know of any, drop @ameliejyc, @astroash, or @maxgerber a line on Gitter";
     newResultsTable.appendChild(resultsHeading);
     newResultsTable.appendChild(notValidContent);
-    dropDown.textContent = res[0].topic.toProperCase();
+    dropDown.textContent = res[0].topic;
   } else {
     resultsHeading.textContent = sectionId;
     newResultsTable.appendChild(resultsHeading);
