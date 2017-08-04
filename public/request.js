@@ -9,10 +9,8 @@ function serverRequest(id, topic, requestType, cb) {
   } else {
     endpoint = id;
   }
-
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log(Array.isArray(JSON.parse(xhr.responseText)));
       cb(id, null, JSON.parse(xhr.responseText));
     }
     if (xhr.status === 404) {

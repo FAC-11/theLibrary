@@ -8,9 +8,8 @@ var main = document.getElementById('main-content');
 dropDown.addEventListener("click", function() {
   dropDownList.classList.toggle("show");
 });
-
 var convertTopicName = function(){};
-
+var ourEvent;
 // Render the DOM - our callback from request.js
 var DOMRender = function(sectionId, err, res) {
   var oldResultsTable = document.getElementById('results-table');
@@ -31,13 +30,12 @@ var DOMRender = function(sectionId, err, res) {
     newResultsTable.appendChild(notValidContent);
     dropDown.textContent = res[0].topic;
   } else {
-    resultsHeading.textContent = sectionId;
+    resultsHeading.textContent = sectionId.split('+current=')[1];
     newResultsTable.appendChild(resultsHeading);
     res.forEach(function(entry) {
       // 1: define Elements
       var resultDiv = document.createElement('div');
       var entryLink = document.createElement('a');
-      var upVoteLink = document.createElement('a');
       var resultsEntry = document.createElement('button');
       var resultsUpVote = document.createElement('button');
       var titleText = document.createElement('span');
@@ -47,7 +45,6 @@ var DOMRender = function(sectionId, err, res) {
       // 2: add CSS classes and IDs
       resultDiv.className = "results";
       entryLink.className = "results__entry-link";
-      upVoteLink.className = "results__upvote-link";
       resultsEntry.className = "results__entry";
       resultsUpVote.className = "results__upvote-btn";
       titleText.className = "entry__text--title";
@@ -59,7 +56,7 @@ var DOMRender = function(sectionId, err, res) {
       entryLink.setAttribute('target', "_blank");
       upVoteImg.setAttribute('data', 'public/arrows.svg');
       upVoteImg.setAttribute('type', 'image/svg+xml');
-      upVoteLink.setAttribute('aria-label', 'Click here to upvote!');
+      resultsUpVote.setAttribute('id', 'upvote-link-'+entry.resource_id);
       titleText.textContent = entry.title;
       dateText.textContent = entry.publish_year || '~';
       upVoteText.textContent = entry.upvotes;
@@ -69,14 +66,30 @@ var DOMRender = function(sectionId, err, res) {
       resultsUpVote.appendChild(upVoteText);
       resultsUpVote.appendChild(upVoteImg);
       entryLink.appendChild(resultsEntry);
-      upVoteLink.appendChild(resultsUpVote);
       resultDiv.appendChild(entryLink);
-      resultDiv.appendChild(upVoteLink);
+      resultDiv.appendChild(resultsUpVote);
       newResultsTable.appendChild(resultDiv);
       dropDown.textContent = entry.topic || 'Select Your Topic';
     });
   };
   main.replaceChild(newResultsTable, oldResultsTable);
+  //upvote hell
+  var upvoteButtons =document.getElementsByClassName('results__upvote-btn');
+  var upvoteButtonsArray = Object.keys(document.getElementsByClassName('results__upvote-btn'));
+  // Event Listener : Upvote
+  upvoteButtonsArray.forEach(function (key) {
+    upvoteButtons[key].addEventListener('click', function(event) {
+      // dream query ?upvote=10+current=javascript
+      var resourceId = event.path[1].id.split('upvote-link-')[1];
+      var currentPage = document.getElementById('drop-down-btn').textContent;
+      if (currentPage==='Select Your Topic'){currentPage='Trending'};
+      var idCreation = '?upvote=' + resourceId + '+current=' + currentPage;
+      var buttonTopic = currentPage;
+      if (currentPage==='Trending'){buttonTopic=null};
+      serverRequest(idCreation, buttonTopic,'post', DOMRender);
+    })
+  })
+
 };
 
 // Close the dropdown menu if the user clicks outside of it
@@ -101,12 +114,3 @@ dropDownList.addEventListener('click', function(event) {
 document.addEventListener('DOMContentLoaded', function(event) {
   serverRequest('Trending', null,'GET', DOMRender);
 });
-
-// Event Listener : Upvote
-upvoteButton.addEventListener('click', function(event) {
-  // dream query ?upvote=wtfeventloop+current=javascript
-  var currentPage = document.getElementById('drop-down-btn').textContent;
-  var currentTitle ;
-  var idCreation = '?upvote=' + currentTitle + '+current=' + currentPage;
-  serverRequest(idCreation, null,'post', DOMRender);
-})

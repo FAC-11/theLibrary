@@ -10,7 +10,7 @@ const router = (req, res) => {
     handlers.handleTopic(req, res, url);
   } else if (url.includes('?trending')) {
     handlers.handleTrending(req, res, url);
-  } else if (url.includes('?upvote')){
+  } else if (url.includes('?upvote')) {
     handlers.handlePostUpvote(req, res, url);
   } else {
     res.writeHead(404, 'Content-Type: text/html');

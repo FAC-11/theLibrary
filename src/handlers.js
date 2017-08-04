@@ -58,22 +58,22 @@ const handleTrending = (req, res) => {
 
 const handlePostUpvote = (req, res, url) => {
       // dream query ?upvote=wtfeventloop+current=javascript
-  const titleName = url.split('?upvote=')[1].split('+current=')[0].replace(/%20/gi, ' ');
+  const titleName = url.split('?upvote=')[1].split('+current=')[0];
   const currentPage = url.split('+current=')[1].replace(/%20/gi,' ');
   postUpvote(titleName, (err, file) => {
     if (err) return err;
     //if no error call getTrending or getTopic to return the updated info for the DOM
     if (currentPage === 'Trending'){
-      getTrending((err, file) => {
+      getTrending((err, response) => {
         if (err) return err;
-        const trendingResponse = JSON.stringify(file);
+        const trendingResponse = JSON.stringify(response);
         res.writeHead(200, { 'content-type': 'application/json' });
         res.end(trendingResponse);
       });
     } else {
-      getTopic(currentPage, (err, file) => {
+      getTopic(currentPage, (err, response) => {
         if (err) return err;
-        const topicResponse = JSON.stringify(file);
+        const topicResponse = JSON.stringify(response);
         res.writeHead(200, { 'content-type': 'application/json' });
         res.end(topicResponse);
       })
