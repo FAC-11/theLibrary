@@ -74,13 +74,11 @@ var DOMRender = function(sectionId, err, res) {
   };
   main.replaceChild(newResultsTable, oldResultsTable);
   //upvote hell
-  var upvoteButtons =document.getElementsByClassName('results__upvote-btn');
-  var upvoteButtonsArray = Object.keys(document.getElementsByClassName('results__upvote-btn'));
-  // Event Listener : Upvote
-  upvoteButtonsArray.forEach(function (key) {
-    upvoteButtons[key].addEventListener('mouseup', function(event) {
+  var upvoteButtons = document.getElementsByClassName('results__upvote-btn');
+  
+  for (var i = 0; i < upvoteButtons.length; i++) {
+    upvoteButtons[i].addEventListener('mouseup', function(event) {
       // dream query ?upvote=10+current=javascript
-      console.log(event);
       var resourceId = event.path[1].id.split('upvote-link-')[1];
       var currentPage = document.getElementById('drop-down-btn').textContent;
       if (currentPage==='Select Your Topic'){currentPage='Trending'};
@@ -88,10 +86,9 @@ var DOMRender = function(sectionId, err, res) {
       var buttonTopic = currentPage;
       if (currentPage==='Trending'){buttonTopic=null};
       serverRequest(idCreation, buttonTopic,'post', DOMRender);
-    })
-  })
-
-};
+    });
+  }
+}
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
