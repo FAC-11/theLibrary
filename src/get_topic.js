@@ -9,7 +9,7 @@ const getTopic = (queryString, cb) => {
         topic: queryString,
         notValid: true
       };
-      cb(null, [anonymous]);
+      cb(null, anonymous);
     } else {
       cb(null, res.rows);
     }

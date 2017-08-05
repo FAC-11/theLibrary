@@ -9,6 +9,31 @@ dropDown.addEventListener("click", function() {
   dropDownList.classList.toggle("show");
 });
 
+// UpVote Event Listener
+var listenerUpVote = function(event) {
+
+  var upvoteButtons = document.getElementsByClassName('results__upvote-btn');
+  var upvoteButtonsArray = Object.keys(document.getElementsByClassName('results__upvote-btn'));
+  upvoteButtonsArray.forEach(function(key) {
+
+    upvoteButtons[key].addEventListener('click', function(event) {
+            event.preventDefault();
+      console.log(event);
+      var resourceId = event.path[1].id.split('upvote-link-')[1];
+      var currentPage = document.getElementById('drop-down-btn').textContent;
+      if (currentPage === 'Select Your Topic') {
+        currentPage = 'Trending'
+      };
+      var idCreation = '?upvote=' + resourceId + '+current=' + currentPage;
+      var buttonTopic = currentPage;
+      if (currentPage === 'Trending') {
+        buttonTopic = null
+      };
+      serverRequest(idCreation, buttonTopic, 'post', DOMRender);
+    })
+  })
+};
+
 // Render the DOM - our callback from request.js
 var DOMRender = function(sectionId, err, res) {
   var oldResultsTable = document.getElementById('results-table');
@@ -20,14 +45,14 @@ var DOMRender = function(sectionId, err, res) {
 
   if (err) {
     console.log(err);
-  } else if (res[0].notValid) {
+  } else if (res.notValid) {
     var notValidContent = document.createElement('p');
     notValidContent.className = "error-message";
     resultsHeading.textContent = "¯\\_(ツ)_/¯";
     notValidContent.textContent = "We don't have any good articles on this topic right now. If you know of any, drop @ameliejyc, @astroash, or @maxgerber a line on Gitter";
     newResultsTable.appendChild(resultsHeading);
     newResultsTable.appendChild(notValidContent);
-    dropDown.textContent = res[0].topic;
+    dropDown.textContent = res.topic;
   } else {
     resultsHeading.textContent = sectionId.split('+current=')[1];
     newResultsTable.appendChild(resultsHeading);
@@ -55,8 +80,7 @@ var DOMRender = function(sectionId, err, res) {
       entryLink.setAttribute('target', "_blank");
       upVoteImg.setAttribute('data', 'public/arrows.svg');
       upVoteImg.setAttribute('type', 'image/svg+xml');
-      resultsUpVote.setAttribute('id', 'upvote-link-'+entry.resource_id);
-      console.log(entry);
+      resultsUpVote.setAttribute('id', 'upvote-link-' + entry.resource_id);
       titleText.textContent = entry.title;
       dateText.textContent = entry.publish_year || '~';
       upVoteText.textContent = entry.upvotes;
@@ -73,24 +97,7 @@ var DOMRender = function(sectionId, err, res) {
     });
   };
   main.replaceChild(newResultsTable, oldResultsTable);
-  //upvote hell
-  var upvoteButtons =document.getElementsByClassName('results__upvote-btn');
-  var upvoteButtonsArray = Object.keys(document.getElementsByClassName('results__upvote-btn'));
-  // Event Listener : Upvote
-  upvoteButtonsArray.forEach(function (key) {
-    upvoteButtons[key].addEventListener('mouseup', function(event) {
-      // dream query ?upvote=10+current=javascript
-      console.log(event);
-      var resourceId = event.path[1].id.split('upvote-link-')[1];
-      var currentPage = document.getElementById('drop-down-btn').textContent;
-      if (currentPage==='Select Your Topic'){currentPage='Trending'};
-      var idCreation = '?upvote=' + resourceId + '+current=' + currentPage;
-      var buttonTopic = currentPage;
-      if (currentPage==='Trending'){buttonTopic=null};
-      serverRequest(idCreation, buttonTopic,'post', DOMRender);
-    })
-  })
-
+  listenerUpVote();
 };
 
 // Close the dropdown menu if the user clicks outside of it
@@ -109,9 +116,11 @@ window.onclick = function(event) {
 // Event Listener : Topic
 dropDownList.addEventListener('click', function(event) {
   serverRequest('Topic', event.target.value, 'GET', DOMRender);
+
 });
 
 // Event Listener : Trending
 document.addEventListener('DOMContentLoaded', function(event) {
-  serverRequest('Trending', null,'GET', DOMRender);
+  serverRequest('Trending', null, 'GET', DOMRender);
+  console.log('trending');
 });

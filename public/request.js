@@ -1,4 +1,5 @@
 function serverRequest(id, topic, requestType, cb) {
+  console.log(id + topic);
   var xhr = new XMLHttpRequest();
   var endpoint = '';
 
@@ -11,7 +12,6 @@ function serverRequest(id, topic, requestType, cb) {
   }
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log(xhr.responseText);
       cb(id, null, JSON.parse(xhr.responseText));
     }
     if (xhr.status === 404) {
