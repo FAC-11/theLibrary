@@ -10,7 +10,7 @@ dropDown.addEventListener("click", function() {
 });
 
 // Render the DOM - our callback from request.js
-var DOMRender = function(sectionId, err, res) {
+var DOMRender = function(sectionId, topic, err, res) {
   var oldResultsTable = document.getElementById('results-table');
   var newResultsTable = document.createElement('section');
   var resultsHeading = document.createElement('h2');
@@ -27,7 +27,7 @@ var DOMRender = function(sectionId, err, res) {
     notValidContent.textContent = "We don't have any good articles on this topic right now. If you know of any, drop @ameliejyc, @astroash, or @maxgerber a line on Gitter";
     newResultsTable.appendChild(resultsHeading);
     newResultsTable.appendChild(notValidContent);
-    dropDown.textContent = res[0].topic;
+    dropDown.textContent = topic;
   } else {
     resultsHeading.textContent = sectionId.split('+current=')[1];
     newResultsTable.appendChild(resultsHeading);
@@ -56,7 +56,6 @@ var DOMRender = function(sectionId, err, res) {
       upVoteImg.setAttribute('data', 'public/arrows.svg');
       upVoteImg.setAttribute('type', 'image/svg+xml');
       resultsUpVote.setAttribute('id', 'upvote-link-'+entry.resource_id);
-      console.log(entry);
       titleText.textContent = entry.title;
       dateText.textContent = entry.publish_year || '~';
       upVoteText.textContent = entry.upvotes;
@@ -105,7 +104,7 @@ window.onclick = function(event) {
 
 // Event Listener : Topic
 dropDownList.addEventListener('click', function(event) {
-  serverRequest('Topic', event.target.value, 'GET', DOMRender);
+  serverRequest('Topic', event.target.textContent, 'GET', DOMRender);
 });
 
 // Event Listener : Trending
