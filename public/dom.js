@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
+// When the user clicks on the button,
+// toggle between hiding and showing the dropdown content
 var dropDown = document.getElementById('drop-down-btn');
 var dropDownList = document.getElementById('dropdown-list');
 var main = document.getElementById('main-content');
@@ -9,7 +9,6 @@ dropDown.addEventListener("click", function() {
   dropDownList.classList.toggle("show");
 });
 
-// Render the DOM - our callback from request.js
 var DOMRender = function(sectionId, topic, err, res) {
   var oldResultsTable = document.getElementById('results-table');
   var newResultsTable = document.createElement('section');
@@ -40,7 +39,7 @@ var DOMRender = function(sectionId, topic, err, res) {
       var titleText = document.createElement('span');
       var dateText = document.createElement('span');
       var upVoteText = document.createElement('span');
-      var upVoteImg = document.createElement('object');
+      var upVoteImg = document.createElement('img');
       // 2: add CSS classes and IDs
       resultDiv.className = "results";
       entryLink.className = "results__entry-link";
@@ -53,8 +52,7 @@ var DOMRender = function(sectionId, topic, err, res) {
       // 3: add data from database response
       entryLink.setAttribute('href', entry.link);
       entryLink.setAttribute('target', "_blank");
-      upVoteImg.setAttribute('data', 'public/arrows.svg');
-      upVoteImg.setAttribute('type', 'image/svg+xml');
+      upVoteImg.setAttribute('src', 'public/golden-upvote.png');
       resultsUpVote.setAttribute('id', 'upvote-link-'+entry.resource_id);
       titleText.textContent = entry.title;
       dateText.textContent = entry.publish_year || '~';
@@ -72,19 +70,19 @@ var DOMRender = function(sectionId, topic, err, res) {
     });
   };
   main.replaceChild(newResultsTable, oldResultsTable);
-  //upvote hell
+
+  // Event Listener : Upvoting
   var upvoteButtons = document.getElementsByClassName('results__upvote-btn');
-  
+
   for (var i = 0; i < upvoteButtons.length; i++) {
-    upvoteButtons[i].addEventListener('mouseup', function(event) {
-      // dream query ?upvote=10+current=javascript
+    upvoteButtons[i].addEventListener('click', function(event) {
       var resourceId = event.path[1].id.split('upvote-link-')[1];
       var currentPage = document.getElementById('drop-down-btn').textContent;
       if (currentPage==='Select Your Topic'){currentPage='Trending'};
       var idCreation = '?upvote=' + resourceId + '+current=' + currentPage;
       var buttonTopic = currentPage;
       if (currentPage==='Trending'){buttonTopic=null};
-      serverRequest(idCreation, buttonTopic,'post', DOMRender);
+      serverRequest(idCreation, buttonTopic,'POST', DOMRender);
     });
   }
 }

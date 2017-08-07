@@ -5,7 +5,7 @@
 
 /* Dropdown Button */
 .dropdowns__btn {
-    width: 65vw;
+    width: calc(10rem + 40vw);
     border: none;
     cursor: pointer;
     font-size: 3vw;
@@ -19,7 +19,7 @@
 
 /* positions the dropdown__content */
 .dropdown {
-    width: 65vw;
+    width: calc(10rem + 40vw);
     margin: auto;
 }
 
@@ -31,6 +31,9 @@
     margin: auto;
 }
 
+.dropdown-list__link {
+  font-size: calc(1.5em + 0.5vw);
+};
 /* Links inside the dropdown */
 .dropdown__content li{
     color: black;
@@ -41,7 +44,7 @@
 .dropdown__content button{
   background-color: #f9f9f9;
   border: none;
-  width: 65vw;
+  width: calc(10rem + 40vw);
 }
 
 .dropdown__content button:hover, button:focus {
@@ -86,7 +89,10 @@
   border: none;
   background: inherit;
   margin: 0;
-  height: 2em;
+  height: 2.3em;
+  width: 1.5em;
+  /*background-color: #0000FF;*/
+  /*text-align: center;*/
 }
 
 .upvote-btn__svg {
