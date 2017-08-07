@@ -18,8 +18,9 @@ CREATE TABLE topics (
 );
 
 CREATE TABLE resources_topics (
+  id             SERIAL                           PRIMARY KEY,
   resource_id    INTEGER REFERENCES resources(id) ON UPDATE CASCADE,
-  topic_id       INTEGER REFERENCES topics(id) ON UPDATE CASCADE
+  topic_id       INTEGER REFERENCES topics(id)    ON UPDATE CASCADE
 );
 
 INSERT INTO resources(title, link, publish_month, publish_year, upvotes) VALUES
