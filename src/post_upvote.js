@@ -1,6 +1,6 @@
 const dbConnection = require('../database/db_connection');
 
-const postUpvote = (id, cb) => {
+const postUpVote = (id, cb) => {
   const postUpvoteSqlQuery = `UPDATE resources SET upvotes = upvotes + 1 WHERE id = ${id};`;
   dbConnection.query(postUpvoteSqlQuery, (err, res) => {
     if (err) return cb(err);
@@ -8,4 +8,4 @@ const postUpvote = (id, cb) => {
   });
 };
 
-module.exports = postUpvote;
+module.exports = postUpVote;

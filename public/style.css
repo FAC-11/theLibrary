@@ -1,6 +1,8 @@
 
 .main-area {
   font-family: Karla, serif;
+  text-align: center;
+  margin: auto;
 }
 
 /* Dropdown Button */
@@ -148,3 +150,8 @@
   font-weight: bold;
   display: block;
 }
+
+.login-github {
+  margin: auto;
+  width: 10%;
+  }

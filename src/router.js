@@ -6,6 +6,10 @@ const router = (req, res) => {
     handlers.handleHomeRoute(req, res);
   } else if (url.includes('public')) {
     handlers.handlePublic(req, res, url);
+  } else if (url.includes('login')) {
+    handlers.handleLoginGet(req, res, url);
+  } else if (url.includes('session')) {
+    handlers.handleLoginPost(req, res, url);
   } else if (url.includes('?topic')) {
     handlers.handleTopic(req, res, url);
   } else if (url.includes('?trending')) {
