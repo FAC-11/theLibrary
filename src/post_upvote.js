@@ -4,7 +4,7 @@ const postUpvote = (id, cb) => {
   const postUpvoteSqlQuery = `UPDATE resources SET upvotes = upvotes + 1 WHERE id = ${id};`;
   dbConnection.query(postUpvoteSqlQuery, (err, res) => {
     if (err) return cb(err);
-    cb(null, res.rows);
+    return cb(null, res.rows);
   });
 };
 

@@ -1,8 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const querystring = require('querystring');
 const getTopic = require('./get_topic');
 const getTrending = require('./get_trending');
 const postUpvote = require('./post_upvote');
+const postNewLink = require('./post_input');
+const badRequest = '<h1>Sorry</h1><h2>Your link was formatted incorrectly</h2>';
 
 const handleHomeRoute = (req, res) => {
   const filePath = path.join(__dirname, '..', 'public', 'index.html');
@@ -13,6 +16,7 @@ const handleHomeRoute = (req, res) => {
     } else {
       res.writeHead(200, 'Content-Type:text/html');
       res.end(file);
+      return file;
     }
   });
 };
@@ -42,7 +46,9 @@ const handleTopic = (req, res, url) => {
   getTopic(topicQuery, (err, file) => {
     if (err) return err;
     const topicResponse = JSON.stringify(file);
-    res.writeHead(200, { 'content-type': 'application/json' });
+    res.writeHead(200, {
+      'content-type': 'application/json'
+    });
     res.end(topicResponse);
   })
 };
@@ -51,33 +57,67 @@ const handleTrending = (req, res) => {
   getTrending((err, file) => {
     if (err) return err;
     const trendingResponse = JSON.stringify(file);
-    res.writeHead(200, { 'content-type': 'application/json' });
+    res.writeHead(200, {
+      'content-type': 'application/json'
+    });
     res.end(trendingResponse);
   });
 };
 
 const handlePostUpvote = (req, res, url) => {
-      // dream query ?upvote=wtfeventloop+current=javascript
+  // dream query ?upvote=wtfeventloop+current=javascript
   const titleName = url.split('?upvote=')[1].split('+current=')[0];
-  const currentPage = url.split('+current=')[1].replace(/%20/gi,' ');
+  const currentPage = url.split('+current=')[1].replace(/%20/gi, ' ');
   postUpvote(titleName, (err, file) => {
     if (err) return err;
     //if no error call getTrending or getTopic to return the updated info for the DOM
-    if (currentPage === 'Trending'){
+    if (currentPage === 'Trending') {
       getTrending((err, response) => {
         if (err) return err;
         const trendingResponse = JSON.stringify(response);
-        res.writeHead(200, { 'content-type': 'application/json' });
+        res.writeHead(200, {
+          'content-type': 'application/json'
+        });
         res.end(trendingResponse);
       });
     } else {
       getTopic(currentPage, (err, response) => {
         if (err) return err;
         const topicResponse = JSON.stringify(response);
-        res.writeHead(200, { 'content-type': 'application/json' });
+        res.writeHead(200, {
+          'content-type': 'application/json'
+        });
         res.end(topicResponse);
       })
     }
+  });
+};
+
+const handleSubmit = (req, res) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data += chunk;
+  });
+
+  req.on('end', () => {
+    data = querystring.parse(data);
+    [data.publish_year, data.publish_month] = data.date.split('-');
+    delete data.date;
+    postNewLink(data, (err, response) => {
+      if (err) {
+        res.setHeader('Error', err);
+        console.log(err);
+        res.writeHead(400, {
+          'Content-Type': 'text/html',
+        });
+        res.end(badRequest);
+      } else {
+        res.writeHead(302, {
+          Location: '/',
+        });
+        res.end();
+      }
+    });
   });
 };
 
@@ -87,4 +127,5 @@ module.exports = {
   handleTopic,
   handleTrending,
   handlePostUpvote,
+  handleSubmit,
 };

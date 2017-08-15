@@ -1,78 +1,126 @@
-
 .main-area {
   font-family: Karla, serif;
+  margin: auto;
+  text-align: center;
 }
+
 
 /* Dropdown Button */
+
 .dropdowns__btn {
-    width: calc(10rem + 40vw);
-    border: none;
-    cursor: pointer;
-    font-size: 3vw;
-    padding: 1vw;
+  width: calc(10rem + 40vw);
+  border: none;
+  cursor: pointer;
+  font-size: 3vw;
+  padding: 1vw;
 }
+
+.link-input {
+  background-color: #21D4FD;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  webkit-box-shadow: 11px 14px 33px 2px rgba(0, 0, 0, 0.64);
+  -moz-box-shadow: 11px 14px 33px 2px rgba(0, 0, 0, 0.64);
+  box-shadow: 11px 14px 33px 2px rgba(0, 0, 0, 0.64);
+  border-radius: 22px 22px 22px 22px;
+  -moz-border-radius: 22px 22px 22px 22px;
+  -webkit-border-radius: 22px 22px 22px 22px;
+  width: 90vw;
+  /*height: 8vh;*/
+  padding: 1vw;
+  margin: 2vh auto;
+  text-align: center;
+}
+
+.link-input__label {
+  display: block;
+}
+
+.link-input__submit {
+  display: block;
+  text-align: center;
+}
+
 
 /* Dropdown button on hover & focus */
+
 .dropdowns__btn:hover, .dropdowns__btn:focus {
-    background-color: #89e9f0;
+  background-color: #89e9f0;
 }
+
 
 /* positions the dropdown__content */
+
 .dropdown {
-    width: calc(10rem + 40vw);
-    margin: auto;
+  width: calc(10rem + 40vw);
+  margin: auto;
 }
 
+
 /* Hides dropdown__content by default */
+
 .dropdown__content {
-    display: none;
-    position: absolute;
-    padding: 0;
-    margin: auto;
+  display: none;
+  position: absolute;
+  padding: 0;
+  margin: auto;
 }
 
 .dropdown-list__link {
   font-size: calc(1.5em + 0.5vw);
-};
-/* Links inside the dropdown */
-.dropdown__content li{
-    color: black;
-    text-decoration: none;
-    display: block;
 }
 
-.dropdown__content button{
+;
+
+/* Links inside the dropdown */
+
+.dropdown__content li {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown__content button {
   background-color: #f9f9f9;
   border: none;
   width: calc(10rem + 40vw);
 }
 
 .dropdown__content button:hover, button:focus {
-    background-color: #ffbff7;
+  background-color: #ffbff7;
 }
 
+
 /* JS to adds this class to the .dropdown__content when clicked*/
+
 .show {
   display: block;
 }
 
+
 /*makes drop down scrowlable */
+
 .dropdown__content {
-   max-height:150px;/* you can change as you need it */
-   overflow:auto;/* to get scroll */
+  max-height: 150px;
+  /* you can change as you need it */
+  overflow: auto;
+  /* to get scroll */
 }
 
+
 /*font align for title and p*/
-.main-area > h1 {
+
+.main-area>h1 {
   text-align: center;
   margin-bottom: 0;
 }
-.main-area > p {
+
+.main-area>p {
   text-align: center;
   font-style: italic;
   margin-top: 0;
 }
-.results > h2 {
+
+.results>h2 {
   text-align: center;
 }
 
@@ -123,7 +171,7 @@
   padding: 0 2rem;
 }
 
-.results > a {
+.results>a {
   color: inherit;
 }
 

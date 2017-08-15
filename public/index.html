@@ -14,8 +14,34 @@
 
 <body>
 <main id ='main-content' class ="main-area">
+  <form class="link-input" action="/submit?" method="POST">
+    <label for="title" class="link-input__label">Title:</label>
+    <input type="text" class="link-input__title" id="title" name="title">
+    <label for="weblink" class="link-input__label">URL:</label>
+    <input type="url" class="link-input__url" id="weblink" name="link">
+    <label for="date" class="link-input__label">Date:</label>
+    <input type="month" class="link-input__date" id="date" name="date">
+    <label for="topics" class="link-input__label">Topics:</label>
+    <input type="radio" class="link-input__topics" name="topic_id" value="5">Accessibility<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="9">APIs<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="10">Callbacks<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="2">CSS<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="4">Databases<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="13">Development Methodologies<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="6">Git<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="14">HTML<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="8">HTTP<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="1">Javascript<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="3">Node<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="12">Servers<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="11">Software Architecture<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="7">TDD<br/>
+    <input type="radio" class="link-input__topics" name="topic_id" value="15">UX<br/>
+    <input type="submit" class="link-input__submit">
+  </form>
   <h1 class="main__heading">theLibrary</h1>
   <h2 class="main__subheading">a FAC11 production</h2>
+
   <div class="dropdown">
   <button class="dropdowns__btn" id="drop-down-btn">Select Your Topic</button>
   <ul id="dropdown-list" class="dropdown__content">

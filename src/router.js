@@ -8,6 +8,8 @@ const router = (req, res) => {
     handlers.handlePublic(req, res, url);
   } else if (url.includes('?topic')) {
     handlers.handleTopic(req, res, url);
+  } else if (url.includes('submit?')) {
+    handlers.handleSubmit(req, res, url);
   } else if (url.includes('?trending')) {
     handlers.handleTrending(req, res, url);
   } else if (url.includes('?upvote')) {
